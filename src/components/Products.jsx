@@ -1,7 +1,6 @@
 import formatCurrency from "../utils";
 
 export default function Products({products}) {
-    console.log('component', products)
   return (
     <div>
       <ul className="products">
