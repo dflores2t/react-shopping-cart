@@ -18,11 +18,11 @@ code {
 :root {
   --Fondo: #203040;
   --Texto: #ffffff;
-  --hoverLink:#ff8000;
+  --hoverLink: #ff8000;
   --botonBorderColor: #c0c0c0;
-  --botonBackground:#f0f0f0;
-  --botonPrimary:#f0c040;
-  --botonHoverBorder:#808080;
+  --botonBackground: #f0f0f0;
+  --botonPrimary: #f0c040;
+  --botonHoverBorder: #808080;
 }
 html {
   font-size: 70%;
@@ -35,7 +35,11 @@ body,
   margin: 0;
 }
 
-body,input,select,button,textarea{
+body,
+input,
+select,
+button,
+textarea {
   font-size: 1.6rem;
   font-family: Montserrat, Arial, Helvetica, sans-serif;
 }
@@ -43,18 +47,19 @@ body,input,select,button,textarea{
 /* Grid */
 .grid-container {
   display: grid;
-  grid-template-areas: "header" 
-  "main" 
-  "footer";
+  grid-template-areas:
+    "header"
+    "main"
+    "footer";
   grid-template-rows: 5rem 1fr 5rem;
   grid-template-columns: 1fr;
   height: 100%;
 }
-a{
+a {
   text-decoration: none;
 }
-a:hover{
-  color:var(--hoverLink);
+a:hover {
+  color: var(--hoverLink);
 }
 header {
   grid-area: header;
@@ -80,20 +85,19 @@ footer {
   align-items: center;
 }
 
-.content{
+.content {
   display: flex;
   flex-wrap: wrap;
 }
-.main{
-  flex:3 60rem;
+.main {
+  flex: 3 60rem;
 }
-.sidebar{
-  flex:1 20rem;
+.sidebar {
+  flex: 1 20rem;
 }
-
 
 /* SECCION PRODUCTS */
-.products{
+.products {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
@@ -102,7 +106,7 @@ footer {
   margin: 0;
   list-style-type: none;
 }
-.products li{
+.products li {
   flex: 0 1 29rem;
   height: 47rem;
   padding: 1rem;
@@ -114,32 +118,45 @@ footer {
   justify-content: space-between;
   height: 100%;
 }
-.product img{
+.product img {
   max-width: 37rem;
   max-height: 37rem;
 }
-.product-price{
+.product-price {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
-.product-price div,.product-price button{
+.product-price div,
+.product-price button {
   text-align: center;
-  flex:1;
+  flex: 1;
 }
-.product-price div{
+.product-price div {
   font-size: 2rem;
 }
-.button{
+.button {
   padding: 1rem;
   border: 0.1rem var(--botonBorderColor) solid;
-  background-color: var(--botonBackground); 
+  background-color: var(--botonBackground);
   cursor: pointer;
 }
 
-.button:hover{
+.button:hover {
   border: 0.1rem #808080 solid;
 }
-.button.primary{
+.button.primary {
   background-color: var(--botonPrimary);
+}
+
+/* filter section */
+.filter {
+  display: flex;
+  justify-content: space-between;
+  padding: 1rem;
+  margin: 1rem;
+  border-bottom: 0.1rem var(--botonBorderColor) solid;
+}
+.filter div {
+  flex:1;
 }
