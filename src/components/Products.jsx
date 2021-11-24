@@ -1,6 +1,6 @@
 import formatCurrency from "../utils";
 
-export default function Products({products}) {
+export default function Products({ products, addToCart }) {
   return (
     <div>
       <ul className="products">
@@ -13,7 +13,7 @@ export default function Products({products}) {
                           </a>
                           <div className="product-price">
                               <div>{formatCurrency(product.price)}</div>
-                              <button className="button primary">Add To Cart</button>
+                      <button onClick={()=> addToCart(product) } className="button primary">Add To Cart</button>
                           </div>
                       </div>
                   </li>
