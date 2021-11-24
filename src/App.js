@@ -2,23 +2,47 @@ import { useState } from "react";
 import data from "./data.json";
 import Products from "./components/Products";
 import Filter from "./components/Filter";
+import Cart from "./components/Cart";
 
 function App() {
-  const [product, setProduct] = useState(data.products);
-  const [size, setSize] = useState("");
-  const [sort, setSort] = useState("");
-
-  const [{ products, sizes, sorts }, setProducts] = useState({
+  const [{ products, sizes, sorts, cartItems }, setProducts] = useState({
     products: data.products,
     sizes: "",
     sorts: "",
+    cartItems: [],
   });
+
+  //removeFromCart
+  const removeFromCart = (products) => {
+    const cartItem = cartItems.slice();
+    // cartItem.filter(x => x._id !== products._id);
+    setProducts((prev) => ({
+      ...prev,cartItems: cartItem.filter(x => x._id !== products._id)
+    }))
+  }
+
+  const addToCart = (products) => {
+    const cartItem = cartItems.slice();
+    let alreadyInCart = false;
+    cartItem.forEach((item) => {
+      if (item._id === products._id) {
+        item.count++;
+        alreadyInCart = true;
+      }
+    });
+    if (!alreadyInCart) {
+      cartItems.push({ ...products, count: 1 });
+    }
+    setProducts((prev) => ({ ...prev, cartItem }));
+    // setCartItem(cartItem); //funciona bien
+  };
 
   const sortProducts = (e) => {
     const sort = e.target.value;
-    setProducts((state) =>({
+    setProducts((state) => ({
       sorts: sort,
-      products: state.products.slice()
+      products: state.products
+        .slice()
         .sort((a, b) =>
           sort === "lowest"
             ? a.price > b.price
@@ -32,6 +56,7 @@ function App() {
             ? 1
             : -1
         ),
+      cartItems: state.cartItems,
     }));
   };
   const filterProducts = (e) => {
@@ -43,6 +68,7 @@ function App() {
         products: data.products.filter(
           (element) => element.availableSizes.indexOf(e.target.value) >= 0
         ),
+        cartItems: cartItems,
       });
     }
   };
@@ -63,9 +89,12 @@ function App() {
               sortProducts={sortProducts}
             />
 
-            <Products products={products} />
+            <Products products={products} addToCart={addToCart} />
           </div>
-          <div className="sidebar">Cart Items</div>
+          <div className="sidebar">
+            {" "}
+            <Cart cartItems={cartItems} removeFromCart={removeFromCart} />
+          </div>
         </div>
       </main>
       <footer>All Right is Reseved</footer>
