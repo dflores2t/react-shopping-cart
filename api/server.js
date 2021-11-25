@@ -1,4 +1,6 @@
+require('dotenv').config();
 const express = require('express');
+
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const shortId = require('shortid');
@@ -11,13 +13,13 @@ app.use(express.json());
 
 
 mongoose.connect(
-  "mongodb+srv://dail1405:7wSY5GGEBmcRF4Ft@nodeexpressprojects.mwujr.mongodb.net/store?retryWrites=true&w=majority",
-//   {
-//     useNewUrlParser: true,
-//     useCreateIndex: true,
-//     useFindAndModify: false,
-//     useUnifiedTopology: true,
-//   }
+  process.env.MONGO_URL
+  //   {
+  //     useNewUrlParser: true,
+  //     useCreateIndex: true,
+  //     useFindAndModify: false,
+  //     useUnifiedTopology: true,
+  //   }
 );
 
 
