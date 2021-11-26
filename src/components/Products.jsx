@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import Zoom from "react-reveal-effects/Zoom";
 import { connect } from "react-redux";
 import { fetchProducts } from "../actions/productActions";
+import {addToCart} from '../actions/cartAction'
 
 function Products(props) {
   const [Product, setProduct] = useState({ product: null, isOpen: false });
@@ -85,7 +86,6 @@ function Products(props) {
                     className="button primary"
                     onClick={(e) => {
                       addToCart(Product.product);
-                      addToCart(Product.product);
                       closeModal();
                     }}
                   >
@@ -108,5 +108,5 @@ function Products(props) {
 //   };
 // };
 
-export default connect((state) => ({ products:state.products.filteredItems}), { fetchProducts })(Products);
+export default connect((state) => ({ products:state.products.filteredItems}), { fetchProducts,addToCart })(Products);
 // export default Products;

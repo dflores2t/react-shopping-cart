@@ -1,5 +1,5 @@
-import { useState } from "react";
-import data from "./data.json";
+// import { useState } from "react";
+// import data from "./data.json";
 import Products from "./components/Products";
 import Filter from "./components/Filter";
 import Cart from "./components/Cart";
@@ -7,49 +7,49 @@ import Cart from "./components/Cart";
 // import store from "./store";
 
 function App() {
-  const [{ products, sizes, sorts, cartItems }, setProducts] = useState({
-    products: data.products,
-    sizes: "",
-    sorts: "",
-    cartItems: localStorage.getItem("cartItems")
-      ? JSON.parse(localStorage.getItem("cartItems"))
-      : [], //[]al inicio
-  });
+  // const [{ products, sizes, sorts, cartItems }, setProducts] = useState({
+  //   products: data.products,
+  //   sizes: "",
+  //   sorts: "",
+  //   cartItems: localStorage.getItem("cartItems")
+  //     ? JSON.parse(localStorage.getItem("cartItems"))
+  //     : [], //[]al inicio
+  // });
 
-  const createOrder = (order) => {
-    alert("need to save order for " + order.name);
-  };
+  // const createOrder = (order) => {
+  //   alert("need to save order for " + order.name);
+  // };
 
   //removeFromCart
-  const removeFromCart = (products) => {
-    const cartItem = cartItems.slice();
-    // cartItem.filter(x => x._id !== products._id);
-    setProducts((prev) => ({
-      ...prev,
-      cartItems: cartItem.filter((x) => x._id !== products._id),
-    }));
-    localStorage.setItem(
-      "cartItems",
-      JSON.stringify(cartItem.filter((x) => x._id !== products._id))
-    );
-  };
+  // const removeFromCart = (products) => {
+  //   const cartItem = cartItems.slice();
+  //   // cartItem.filter(x => x._id !== products._id);
+  //   setProducts((prev) => ({
+  //     ...prev,
+  //     cartItems: cartItem.filter((x) => x._id !== products._id),
+  //   }));
+  //   localStorage.setItem(
+  //     "cartItems",
+  //     JSON.stringify(cartItem.filter((x) => x._id !== products._id))
+  //   );
+  // };
 
-  const addToCart = (products) => {
-    const cartItem = cartItems.slice();
-    let alreadyInCart = false;
-    cartItem.forEach((item) => {
-      if (item._id === products._id) {
-        item.count++;
-        alreadyInCart = true;
-      }
-    });
-    if (!alreadyInCart) {
-      cartItems.push({ ...products, count: 1 });
-    }
-    setProducts((prev) => ({ ...prev, cartItem }));
-    // setCartItem(cartItem); //funciona bien
-    localStorage.setItem("cartItems", JSON.stringify(cartItems));
-  };
+  // const addToCart = (products) => {
+  //   const cartItem = cartItems.slice();
+  //   let alreadyInCart = false;
+  //   cartItem.forEach((item) => {
+  //     if (item._id === products._id) {
+  //       item.count++;
+  //       alreadyInCart = true;
+  //     }
+  //   });
+  //   if (!alreadyInCart) {
+  //     cartItems.push({ ...products, count: 1 });
+  //   }
+  //   setProducts((prev) => ({ ...prev, cartItem }));
+  //   // setCartItem(cartItem); //funciona bien
+  //   localStorage.setItem("cartItems", JSON.stringify(cartItems));
+  // };
 
   // const sortProducts = (e) => {
   //   const sort = e.target.value;
@@ -105,14 +105,16 @@ function App() {
 
             <Products
               // products={products}
-              addToCart={addToCart} />
+              // addToCart={addToCart}
+              
+              />
           </div>
           <div className="sidebar">
             {" "}
             <Cart
-              cartItems={cartItems}
-              removeFromCart={removeFromCart}
-              createOrder={createOrder}
+              // cartItems={cartItems}
+              // removeFromCart={removeFromCart}
+              // createOrder={createOrder}
             />
           </div>
         </div>

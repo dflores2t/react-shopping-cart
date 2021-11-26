@@ -1,9 +1,12 @@
 import { useState } from "react";
 import formatCurrency from "../utils";
 import Fade from "react-reveal-effects/Fade";
+import { connect } from "react-redux";
+import { removeFromCart } from "../actions/cartAction";
 
-export default function Cart(props) {
+function Cart(props) {
   const { cartItems, removeFromCart } = props;
+
   const initialState = {
     name: "",
     email: "",
@@ -30,18 +33,17 @@ export default function Cart(props) {
     };
     props.createOrder(order);
   };
-
   return (
     <>
-      <div>
-        {cartItems.length === 0 ? (
+      {/* <div>
+        {cartItems.length === parseInt(0) ? (
           <div className="cart cart-header">Cart is empty</div>
         ) : (
           <div className="cart cart-header">
             You have {cartItems.length} in the cart{" "}
           </div>
         )}
-      </div>
+        </div> */}
       <div>
         <Fade left cascade>
           <div className="cart">
@@ -136,3 +138,10 @@ export default function Cart(props) {
     </>
   );
 }
+
+export default connect(
+  (state) => ({
+    cartItems: state.cart.cartItems,
+  }),
+  { removeFromCart }
+)(Cart);
