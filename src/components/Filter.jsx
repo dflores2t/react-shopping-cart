@@ -1,24 +1,24 @@
-export default function Filter({
-  count,
-  size,
-  sort,
-  filterProducts,
-  sortProducts,
-}) {
-  return (
+
+import { connect } from "react-redux";
+import { filterProducts, sortProducts } from "../actions/productActions";
+
+function Filter({ size, sort, products, filteredProducts, sortProducts,filterProducts }) {
+  return !filteredProducts ? (
+    <div>Loading...</div>
+  ) : (
     <div className="filter">
-      <div className="filter-result">{count} Products</div>
+      <div className="filter-result">{filteredProducts.length} Products</div>
       <div className="filter-sort">
         Order: {""}
-        <select value={sort} onChange={sortProducts}>
-          <option value="">Latest</option>
+        <select value={sort} onChange={(e) => sortProducts(filteredProducts,e.target.value)}>
+          <option value="latest">Latest</option>
           <option value="lowest">Lowest</option>
           <option value="highest">Highest</option>
         </select>
       </div>
       <div className="fliter-size">
         Filter: {""}
-        <select value={size} onChange={filterProducts}>
+        <select value={size} onChange={(e)=> filterProducts(products,e.target.value)}>
           <option value="">All</option>
           <option value="XS">XS</option>
           <option value="S">S</option>
@@ -31,3 +31,16 @@ export default function Filter({
     </div>
   );
 }
+
+export default connect(
+  (state) => ({
+    size: state.products.size,
+    sort: state.products.sort,
+    products: state.products.items,
+    filteredProducts: state.products.filteredItems,
+  }),
+  {
+    filterProducts,
+    sortProducts,
+  }
+)(Filter);
