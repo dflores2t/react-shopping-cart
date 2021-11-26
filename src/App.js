@@ -4,6 +4,8 @@ import Products from "./components/Products";
 import Filter from "./components/Filter";
 import Cart from "./components/Cart";
 
+// import store from "./store";
+
 function App() {
   const [{ products, sizes, sorts, cartItems }, setProducts] = useState({
     products: data.products,
@@ -15,8 +17,8 @@ function App() {
   });
 
   const createOrder = (order) => {
-    alert('need to save order for ' + order.name);
-  }
+    alert("need to save order for " + order.name);
+  };
 
   //removeFromCart
   const removeFromCart = (products) => {
@@ -26,7 +28,10 @@ function App() {
       ...prev,
       cartItems: cartItem.filter((x) => x._id !== products._id),
     }));
-    localStorage.setItem("cartItems", JSON.stringify(cartItem.filter((x) => x._id !== products._id)));
+    localStorage.setItem(
+      "cartItems",
+      JSON.stringify(cartItem.filter((x) => x._id !== products._id))
+    );
   };
 
   const addToCart = (products) => {
@@ -102,7 +107,11 @@ function App() {
           </div>
           <div className="sidebar">
             {" "}
-            <Cart cartItems={cartItems} removeFromCart={removeFromCart} createOrder={createOrder} />
+            <Cart
+              cartItems={cartItems}
+              removeFromCart={removeFromCart}
+              createOrder={createOrder}
+            />
           </div>
         </div>
       </main>
