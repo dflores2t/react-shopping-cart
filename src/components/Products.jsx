@@ -108,5 +108,5 @@ function Products(props) {
 //   };
 // };
 
-export default connect((state) => ({ products:state.products.items}), { fetchProducts })(Products);
+export default connect((state) => ({ products:state.products.filteredItems}), { fetchProducts })(Products);
 // export default Products;

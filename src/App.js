@@ -51,41 +51,41 @@ function App() {
     localStorage.setItem("cartItems", JSON.stringify(cartItems));
   };
 
-  const sortProducts = (e) => {
-    const sort = e.target.value;
-    setProducts((state) => ({
-      sorts: sort,
-      products: state.products
-        .slice()
-        .sort((a, b) =>
-          sort === "lowest"
-            ? a.price > b.price
-              ? 1
-              : -1
-            : sort === "highest"
-            ? a.price < b.price
-              ? 1
-              : -1
-            : a._id > b._id
-            ? 1
-            : -1
-        ),
-      cartItems: state.cartItems,
-    }));
-  };
-  const filterProducts = (e) => {
-    if (e.target.value === "") {
-      setProducts({ sizes: e.target.value, products: data.products });
-    } else {
-      setProducts({
-        sizes: e.target.value,
-        products: data.products.filter(
-          (element) => element.availableSizes.indexOf(e.target.value) >= 0
-        ),
-        cartItems: cartItems,
-      });
-    }
-  };
+  // const sortProducts = (e) => {
+  //   const sort = e.target.value;
+  //   setProducts((state) => ({
+  //     sorts: sort,
+  //     products: state.products
+  //       .slice()
+  //       .sort((a, b) =>
+  //         sort === "lowest"
+  //           ? a.price > b.price
+  //             ? 1
+  //             : -1
+  //           : sort === "highest"
+  //           ? a.price < b.price
+  //             ? 1
+  //             : -1
+  //           : a._id > b._id
+  //           ? 1
+  //           : -1
+  //       ),
+  //     cartItems: state.cartItems,
+  //   }));
+  // };
+  // const filterProducts = (e) => {
+  //   if (e.target.value === "") {
+  //     setProducts({ sizes: e.target.value, products: data.products });
+  //   } else {
+  //     setProducts({
+  //       sizes: e.target.value,
+  //       products: data.products.filter(
+  //         (element) => element.availableSizes.indexOf(e.target.value) >= 0
+  //       ),
+  //       cartItems: cartItems,
+  //     });
+  //   }
+  // };
 
   return (
     <div className="grid-container">
@@ -96,14 +96,16 @@ function App() {
         <div className="content">
           <div className="main">
             <Filter
-              count={products.length}
-              size={sizes}
-              sort={sorts}
-              filterProducts={filterProducts}
-              sortProducts={sortProducts}
+              // count={products.length}
+              // size={sizes}
+              // sort={sorts}
+              // filterProducts={filterProducts}
+              // sortProducts={sortProducts}
             />
 
-            <Products products={products} addToCart={addToCart} />
+            <Products
+              // products={products}
+              addToCart={addToCart} />
           </div>
           <div className="sidebar">
             {" "}
